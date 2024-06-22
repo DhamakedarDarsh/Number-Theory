@@ -1,0 +1,475 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     12095,        466]
+NotebookOptionsPosition[     10152,        390]
+NotebookOutlinePosition[     10490,        405]
+CellTagsIndexPosition[     10447,        402]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Gaussian Sum", "Title"],
+
+Cell[CellGroupData[{
+
+Cell["Author", "Subsection"],
+
+Cell["\<\
+Eric W. Weisstein
+September 6, 2008\
+\>", "Text"],
+
+Cell[TextData[{
+ "This notebook downloaded from ",
+ ButtonBox["http://mathworld.wolfram.com/notebooks/NumberTheoreticFunctions/\
+GaussianSum.nb",
+  BaseStyle->"Hyperlink",
+  ButtonData:>{
+    URL["http://mathworld.wolfram.com/notebooks/NumberTheoreticFunctions/\
+GaussianSum.nb"], None}],
+ "."
+}], "Text"],
+
+Cell[TextData[{
+ "For more information, see Eric's ",
+ StyleBox["MathWorld",
+  FontSlant->"Italic"],
+ " entry ",
+ ButtonBox["http://mathworld.wolfram.com/GaussianSum.html",
+  BaseStyle->"Hyperlink",
+  ButtonData:>{
+    URL["http://mathworld.wolfram.com/GaussianSum.html"], None}],
+ "."
+}], "Text"],
+
+Cell["\<\
+\[Copyright]2008 Wolfram Research, Inc. except for portions noted otherwise\
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Definition", "Subsection"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GaussianSum", "[", 
+   RowBox[{"p_", ",", "q_", ",", 
+    RowBox[{"opts___", "?", "OptionQ"}]}], "]"}], ":=", 
+  RowBox[{"Sum", "[", 
+   RowBox[{
+    RowBox[{"Exp", "[", 
+     RowBox[{
+      RowBox[{"-", "Pi"}], " ", "I", " ", 
+      SuperscriptBox["r", "2"], 
+      RowBox[{"p", "/", "q"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", "0", ",", 
+      RowBox[{"q", "-", "1"}]}], "}"}], ",", "opts"}], "]"}]}]], "Input",
+ InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Sum", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["V7", "Subsubsection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GaussianSum", "[", 
+  RowBox[{"p", ",", "q"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  UnderoverscriptBox["\[Sum]", 
+   RowBox[{"r", "=", "0"}], 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", "q"}]], 
+  SuperscriptBox["\[ExponentialE]", 
+   RowBox[{"-", 
+    FractionBox[
+     RowBox[{"\[ImaginaryI]", " ", "p", " ", "\[Pi]", " ", 
+      SuperscriptBox["r", "2"]}], "q"]}]]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GaussianSum", "[", 
+  RowBox[{"p", ",", "q", ",", 
+   RowBox[{"Assumptions", "\[Rule]", 
+    RowBox[{
+     RowBox[{"GCD", "[", 
+      RowBox[{"p", ",", "q"}], "]"}], "\[Equal]", "1"}]}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"GaussianSum", "[", 
+  RowBox[{"p", ",", "q", ",", 
+   RowBox[{"Assumptions", "\[Rule]", 
+    RowBox[{
+     RowBox[{"GCD", "[", 
+      RowBox[{"p", ",", "q"}], "]"}], "\[Equal]", "1"}]}]}], "]"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GaussianSum", "[", 
+  RowBox[{
+   RowBox[{"-", "2"}], ",", "q"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  UnderoverscriptBox["\[Sum]", 
+   RowBox[{"r", "=", "0"}], 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", "q"}]], 
+  SuperscriptBox["\[ExponentialE]", 
+   FractionBox[
+    RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Pi]", " ", 
+     SuperscriptBox["r", "2"]}], "q"]]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GaussianSum", "[", 
+   RowBox[{
+    RowBox[{"-", "2"}], ",", "q", ",", 
+    RowBox[{"Assumptions", "\[Rule]", 
+     RowBox[{
+      RowBox[{"Mod", "[", 
+       RowBox[{"q", ",", "r"}], "]"}], "\[Equal]", "0"}]}]}], "]"}], "//", 
+  "InputForm"}]], "Input"],
+
+Cell["\<\
+Sum[E^(((2*I)*Pi*r^2)/q), {r, 0, -1 + q}, Assumptions -> Mod[q, r] == 0]\
+\>", "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Sum", "[", 
+   RowBox[{
+    RowBox[{"E", "^", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "*", "I"}], ")"}], "*", "Pi", "*", 
+         RowBox[{"r", "^", "2"}]}], ")"}], "/", "q"}], ")"}]}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", " ", "0", ",", " ", 
+      RowBox[{
+       RowBox[{"-", "1"}], " ", "+", " ", "q"}]}], "}"}]}], "]"}], "//", 
+  "InputForm"}]], "Input"],
+
+Cell["Sum[E^(((2*I)*Pi*r^2)/q), {r, 0, -1 + q}]", "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Subtract", "@@@", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"GaussianSum", "[", 
+          RowBox[{
+           RowBox[{"-", "2"}], ",", "q"}], "]"}], ",", 
+         RowBox[{"Piecewise", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"I", "+", "1"}], ")"}], 
+               RowBox[{"Sqrt", "[", "q", "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"Mod", "[", 
+                RowBox[{"q", ",", "4"}], "]"}], "\[Equal]", "0"}]}], "}"}], 
+            ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Sqrt", "[", "q", "]"}], ",", 
+              RowBox[{
+               RowBox[{"Mod", "[", 
+                RowBox[{"q", ",", "4"}], "]"}], "\[Equal]", "1"}]}], "}"}], 
+            ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", 
+              RowBox[{
+               RowBox[{"Mod", "[", 
+                RowBox[{"q", ",", "4"}], "]"}], "\[Equal]", "2"}]}], "}"}], 
+            ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"I", " ", 
+               RowBox[{"Sqrt", "[", "q", "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"Mod", "[", 
+                RowBox[{"q", ",", "4"}], "]"}], "\[Equal]", "3"}]}], "}"}]}], 
+           "}"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"q", ",", "0", ",", "20"}], "}"}]}], "]"}]}], "//", 
+    "Factor"}], "//", "RootReduce"}], "//", "Union"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", "0", "}"}]], "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Examples", "Section"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GaussianSum", "[", 
+  RowBox[{
+   RowBox[{"-", "2"}], ",", "q"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  UnderoverscriptBox["\[Sum]", 
+   RowBox[{"r", "=", "0"}], 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", "q"}]], 
+  SuperscriptBox["\[ExponentialE]", 
+   FractionBox[
+    RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Pi]", " ", 
+     SuperscriptBox["r", "2"]}], "q"]]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"s1", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"GaussianSum", "[", 
+       RowBox[{
+        RowBox[{"-", "2"}], ",", "q"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"q", ",", "20"}], "}"}]}], "]"}], "//", "FullSimplify"}], "//",
+    "ComplexExpand"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["3"]}], ",", 
+   RowBox[{"2", "+", 
+    RowBox[{"2", " ", "\[ImaginaryI]"}]}], ",", 
+   SqrtBox["5"], ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["7"]}], ",", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"2", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SqrtBox["2"]}], ",", "3", ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["11"]}], ",", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"2", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SqrtBox["3"]}], ",", 
+   SqrtBox["13"], ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["15"]}], ",", 
+   RowBox[{"4", "+", 
+    RowBox[{"4", " ", "\[ImaginaryI]"}]}], ",", 
+   SqrtBox["17"], ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["19"]}], ",", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"2", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SqrtBox["5"]}]}], "}"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"s2", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"Switch", "[", 
+     RowBox[{
+      RowBox[{"Mod", "[", 
+       RowBox[{"q", ",", "4"}], "]"}], ",", "\[IndentingNewLine]", "0", ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"I", "+", "1"}], ")"}], 
+       SqrtBox["q"]}], ",", "\[IndentingNewLine]", "1", ",", 
+      SqrtBox["q"], ",", "\[IndentingNewLine]", "2", ",", "0", ",", 
+      "\[IndentingNewLine]", "3", ",", 
+      RowBox[{"I", " ", 
+       SqrtBox["q"]}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"q", ",", "20"}], "}"}]}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["3"]}], ",", 
+   RowBox[{"2", "+", 
+    RowBox[{"2", " ", "\[ImaginaryI]"}]}], ",", 
+   SqrtBox["5"], ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["7"]}], ",", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"2", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SqrtBox["2"]}], ",", "3", ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["11"]}], ",", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"2", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SqrtBox["3"]}], ",", 
+   SqrtBox["13"], ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["15"]}], ",", 
+   RowBox[{"4", "+", 
+    RowBox[{"4", " ", "\[ImaginaryI]"}]}], ",", 
+   SqrtBox["17"], ",", "0", ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["19"]}], ",", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"2", " ", "\[ImaginaryI]"}]}], ")"}], " ", 
+    SqrtBox["5"]}]}], "}"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"s1", "\[Equal]", "s2"}]], "Input"],
+
+Cell[BoxData["True"], "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{677, 734},
+WindowMargins->{{Automatic, 338}, {66, Automatic}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 29, 0, 88, "Title"],
+Cell[CellGroupData[{
+Cell[633, 26, 28, 0, 39, "Subsection"],
+Cell[664, 28, 59, 3, 53, "Text"],
+Cell[726, 33, 305, 9, 53, "Text"],
+Cell[1034, 44, 297, 10, 53, "Text"],
+Cell[1334, 56, 99, 2, 32, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1470, 63, 32, 0, 39, "Subsection"],
+Cell[1505, 65, 494, 15, 52, "Input",
+ InitializationCell->True]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2036, 85, 22, 0, 74, "Section"],
+Cell[CellGroupData[{
+Cell[2083, 89, 27, 0, 28, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[2135, 93, 87, 2, 30, "Input"],
+Cell[2225, 97, 321, 10, 59, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2583, 112, 229, 6, 30, "Input"],
+Cell[2815, 120, 230, 6, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3082, 131, 106, 3, 30, "Input"],
+Cell[3191, 136, 299, 9, 59, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3527, 150, 289, 9, 28, "Input"],
+Cell[3819, 161, 98, 2, 29, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3954, 168, 488, 16, 28, "Input"],
+Cell[4445, 186, 59, 0, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4541, 191, 1740, 48, 70, "Input"],
+Cell[6284, 241, 50, 1, 70, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6395, 249, 27, 0, 70, "Section"],
+Cell[CellGroupData[{
+Cell[6447, 253, 106, 3, 70, "Input"],
+Cell[6556, 258, 299, 9, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6892, 272, 336, 11, 70, "Input"],
+Cell[7231, 285, 1053, 34, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8321, 324, 606, 17, 70, "Input"],
+Cell[8930, 343, 1053, 34, 70, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10020, 382, 58, 1, 70, "Input"],
+Cell[10081, 385, 31, 0, 70, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
